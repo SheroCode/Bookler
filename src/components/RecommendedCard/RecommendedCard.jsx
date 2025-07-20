@@ -1,28 +1,27 @@
-import React from "react";
-import img from "../../assets/images/Image.png";
-function RecommendedCard() {
+function RecommendedCard({ recommend }) {
   return (
     <>
       <a
         href='#'
-        className='flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'>
+        className='flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row max-w-lg hover:bg-gray-100 p-5 '>
+        
         <img
-          className='object-cover w-3/4 rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg p-4'
-          src={img}
+          className=' md:w-2/5  rounded-2xl shadow-xl  w-full mb-3'
+          src={recommend.images.main}
         />
-        <div className="p-4">
+        <div className='ps-5 '>
           <div className='flex flex-col justify-between  leading-normal'>
             <p className='text-gray-400'>HOTEL</p>
-            <h5 className='mb-2 text-xl font-bold tracking-tight text-gray-900'>
-              Noteworthy technology acquisitions 
+            <h5 className='mb-2 text-xl font-bold tracking-tight text-gray-900'>{
+              recommend.name}
             </h5>
-            <p className='mb-3 font-normal text-gray-600'>
-              Here are the biggest enterprise technology{" "}
+            <p className='mb-3 font-normal text-gray-600 line-clamp-2 '>
+           {recommend.description}
             </p>
           </div>
           <div className='flex justify-between items-center'>
             <p>
-              Cupon : <span className='font-bold'> DHGHJHJ</span>
+              Status: <span className='font-bold'> {recommend.rating.status}</span>
             </p>
             <button
               type='button'

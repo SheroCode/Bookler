@@ -15,7 +15,7 @@ import BookingPage from "./pages/BookingPage/BookingPage";
 import { lazy } from "react";
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 function App() {
-  const router = createBrowserRouter([
+  const routes = createBrowserRouter([
     {
       path: "",
       element: <Layout />,
@@ -41,7 +41,7 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <RouterProvider router={routes}/>/
 
       {/* <Register /> */}
       {/* <Login/> */}
