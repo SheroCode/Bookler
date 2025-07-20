@@ -1,16 +1,24 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { axiosInstance } from "../../Network/interceptor";
 import { TbTruckLoading } from "react-icons/tb";
+import BestOffer from "../../components/BestOffer/BestOffer";
 // Lazy loading
 const RecommendedCard = lazy(() =>
   import("../../components/RecommendedCard/RecommendedCard")
 );
 function HomePage() {
   const [recommends, setRecommends] = useState([]);
+  const [bestOffers, setBestOffer] = useState([]);
   useEffect(() => {
     axiosInstance.get(`/recommended_hotels`).then((res) => {
       console.log(res.data);
       return setRecommends(res.data);
+    });
+  }, []);
+  useEffect(() => {
+    axiosInstance.get(`/best_offer`).then((res) => {
+      console.log(res.data);
+      return setBestOffer(res.data);
     });
   }, []);
   return (
@@ -30,6 +38,15 @@ function HomePage() {
           ))}
         </div>
       </Suspense>
+
+      <div className='bg-white rounded-2xl p-7 mt-10  '>
+        <h2 className='font-bold text-2xl mb-6'> Best Offer</h2>
+        <div className='flex flex-wrap gap-4'>
+          {bestOffers.map((bestOffer) => (
+            <BestOffer key={bestOffer.id} bestOffer={bestOffer} />
+          ))}
+        </div>
+      </div>
     </>
   );
 }
