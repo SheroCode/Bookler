@@ -2,7 +2,6 @@
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
 
-
-body{
-    background-color: #ECEDF3;
+body {
+  background-color: #ecedf3;
 }
