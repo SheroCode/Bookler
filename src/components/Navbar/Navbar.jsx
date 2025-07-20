@@ -1,10 +1,10 @@
-import { RiTaxiFill } from "react-icons/ri";
-import "./Navbar.css";
 import { BiSolidHotel } from "react-icons/bi";
 import { MdOutlineFlightTakeoff, MdVilla } from "react-icons/md";
-import SideBar from "../SideBar/SideBar";
+import { RiTaxiFill } from "react-icons/ri";
+import "./Navbar.css";
+import { Link } from "react-router-dom";
 function Navbar() {
-  const isloggedin = true;
+  const isloggedin = false;
   return (
     <>
       <nav className='bg-white border-gray-200 dark:bg-gray-900'>
@@ -30,8 +30,12 @@ function Navbar() {
               </button>
             ) : (
               <div className='flex gap-4 text-white mb-50'>
-                <p className='font-medium'>Login</p>
-                <p className='font-medium'>Sign up</p>
+                <Link to='login' className='font-medium'>
+                  Login
+                </Link>
+                <Link to='register' className='font-medium'>
+                  Sign up
+                </Link>
               </div>
             )}
             {/* User Dropdown menu  */}
@@ -105,38 +109,38 @@ function Navbar() {
             className='items-center justify-between hidden w-full md:flex md:w-auto md:order-1'
             id='navbar-user'>
             <ul className='flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 '>
-              <li className="hover:bg-blue-700 rounded-xl">
+              <li className='hover:bg-blue-700 rounded-xl'>
                 <a
                   href='#'
                   className='flex flex-col items-center py-2 px-3 text-white  '
                   aria-current='page'>
                   {" "}
                   <BiSolidHotel className='text-2xl' />
-                  <span className="font-mono">HOTEL</span>
+                  <span className='font-mono'>HOTEL</span>
                 </a>
               </li>
-              <li className="hover:bg-blue-700 rounded-xl">
+              <li className='hover:bg-blue-700 rounded-xl'>
                 <a
                   href='#'
                   className='flex flex-col items-center py-2 px-3 text-white  '>
                   <MdVilla className='text-2xl' />
-                  <span className="font-mono">VILLA</span>
+                  <span className='font-mono'>VILLA</span>
                 </a>
               </li>
-              <li className="hover:bg-blue-700 rounded-xl">
+              <li className='hover:bg-blue-700 rounded-xl'>
                 <a
                   href='#'
                   className='flex flex-col items-center py-2 px-3 text-white '>
                   <RiTaxiFill className='text-2xl' />
-                  <span className="font-mono">TAXI</span>
+                  <span className='font-mono'>TAXI</span>
                 </a>
               </li>
-              <li className="hover:bg-blue-700 rounded-xl">
+              <li className='hover:bg-blue-700 rounded-xl'>
                 <a
                   href='#'
                   className='flex flex-col items-center py-2 px-3 text-white '>
                   <MdOutlineFlightTakeoff className='text-2xl' />
-                  <span className="font-mono">FLIGHTS</span>
+                  <span className='font-mono'>FLIGHTS</span>
                 </a>
               </li>
             </ul>

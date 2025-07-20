@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const SideBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
-
+  const isLoggedin = false;
   return (
     <>
       {/* Sidebar */}
@@ -31,20 +31,28 @@ const SideBar = () => {
           </div>
 
           {/* Menu Items */}
-          <div className='space-y-4 text-white text-base font-medium'>
-              <Link to='' className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
-                <MdHome size={22} />
-                {!isCollapsed && <span>Home</span>}
-              </Link>
-            <Link to='mybooking' className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
+          <div className='space-y-4 text-white'>
+            <Link
+              to=''
+              className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
+              <MdHome size={22} />
+              {!isCollapsed && <span>Home</span>} 
+            </Link>
+            <Link
+              to='mybooking'
+              className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
               <TbBrandBooking size={22} />
               {!isCollapsed && <span>My Bookings</span>}
             </Link>
-            <Link to='' className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
+            <Link
+              to=''
+              className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
               <IoEarth size={22} />
               {!isCollapsed && <span>Explore</span>}
             </Link>
-            <Link to='' className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
+            <Link
+              to=''
+              className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
               <MdContactSupport size={22} />
               {!isCollapsed && <span>Support</span>}
             </Link>
@@ -52,13 +60,16 @@ const SideBar = () => {
         </div>
 
         {/* Bottom - Sign Up */}
-        <div className='text-center mt-6'>
-          {!isCollapsed && (
-            <button className='bg-white text-red-600 border-2 border-red-600 hover:bg-gray-100 px-6 py-2 rounded-full text-sm font-semibold'>
-              Sign Up Now
-            </button>
-          )}
-        </div>
+
+        {!isLoggedin && (
+          <div className='text-center mt-6'>
+            {!isCollapsed && (
+              <Link to="register" className='bg-white text-red-600 border-2 border-red-600 hover:bg-gray-100 px-6 py-2 rounded-full text-sm font-semibold'>
+                Sign Up Now
+              </Link>
+            )}
+          </div>
+        )}
       </aside>
     </>
   );
