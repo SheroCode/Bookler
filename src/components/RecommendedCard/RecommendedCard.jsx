@@ -11,8 +11,8 @@ function RecommendedCard({ recommend }) {
         />
         <div className='ps-5 '>
           <div className='flex flex-col justify-between  leading-normal'>
-            <p className='text-gray-400'>HOTEL</p>
-            <h5 className='mb-2 text-xl font-bold tracking-tight text-gray-900'>{
+            <p className='text-gray-400 text-sm'>HOTEL</p>
+            <h5 className='mb-2 text-lg font-bold tracking-tight text-gray-900'>{
               recommend.name}
             </h5>
             <p className='mb-3 font-normal text-gray-600 line-clamp-2 '>
