@@ -3,13 +3,24 @@ import bgimage from "../../assets/images/BG.png";
 import blueLogo from "../../assets/images/bluelogo.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 
 function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onBlur" }); // Show error on blur
+
+  const onSubmit = (data) => {
+    console.log("Login Data:", data);
+  };
+
   return (
     <div className='flex flex-col md:flex-row min-h-screen'>
       {/* FORM SECTION */}
       <div className='w-full md:w-1/2 flex flex-col justify-center items-center p-6 m-auto'>
-        <form className='w-full max-w-md'>
+        <form className='w-full max-w-md' onSubmit={handleSubmit(onSubmit)}>
           {/* Logo */}
           <div className='text-center mb-4'>
             <img src={blueLogo} alt='logo' className='mx-auto w-32' />
@@ -28,10 +39,21 @@ function Login() {
             <input
               type='email'
               id='email'
-              className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
               placeholder='john.doe@company.com'
-              required
+              className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                  message: "Invalid email format",
+                },
+              })}
             />
+            {errors.email && (
+              <div className='p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50'>
+                <span className='font-medium'>{errors.email.message}</span>
+              </div>
+            )}
           </div>
 
           {/* Password */}
@@ -44,10 +66,17 @@ function Login() {
             <input
               type='password'
               id='password'
-              className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
               placeholder='•••••••••'
-              required
+              className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
+              {...register("password", {
+                required: "Password is required",
+              })}
             />
+            {errors.password && (
+              <div className='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50'>
+                <span className='font-medium'>{errors.password.message}</span>
+              </div>
+            )}
           </div>
 
           {/* Login button */}
