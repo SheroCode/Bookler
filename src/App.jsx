@@ -13,6 +13,7 @@ import Register from "./pages/Register/Register";
 import NotFound from "./pages/NotFound/NotFound";
 import BookingPage from "./pages/BookingPage/BookingPage";
 import { lazy } from "react";
+import ProtectedRoute from "./routes/ProtectedRoute";
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 function App() {
   const routes = createBrowserRouter([
@@ -27,7 +28,11 @@ function App() {
 
         {
           path: "mybooking",
-          element: <BookingPage />,
+          element: (
+            <ProtectedRoute>
+              <BookingPage />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "*",
@@ -41,9 +46,7 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={routes}/>/
-
-      {/* <Register /> */}
+      <RouterProvider router={routes} />/{/* <Register /> */}
       {/* <Login/> */}
       {/* <SideBar/> */}
       {/* <RecommendedCard/> */}
