@@ -33,8 +33,10 @@ function SearchBar() {
               COUNTRY
             </label>
             <select className='rounded-full px-4 py-2 bg-gray-100 text-gray-800 w-40'>
-              {countries.map((country) => (
-                <option value={country.value}>{country.label}</option>
+              {countries.map((country, index) => (
+                <option key={index} value={country.value}>
+                  {country.label}
+                </option>
               ))}
             </select>
           </div>

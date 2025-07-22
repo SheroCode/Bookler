@@ -15,6 +15,7 @@ import BookingPage from "./pages/BookingPage/BookingPage";
 import { lazy } from "react";
 import ProtectedRoute from "./routes/ProtectedRoute";
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const SearchPage = lazy(() => import("./pages/SearchPage/SearchPage"));
 function App() {
   const routes = createBrowserRouter([
     {
@@ -32,6 +33,12 @@ function App() {
             <ProtectedRoute>
               <BookingPage />
             </ProtectedRoute>
+          ),
+        },
+        {
+          path: "searchpage",
+          element: (
+              <SearchPage />
           ),
         },
         {

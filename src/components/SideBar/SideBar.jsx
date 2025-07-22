@@ -5,11 +5,13 @@ import { RiMenu3Line } from "react-icons/ri";
 import { TbBrandBooking } from "react-icons/tb";
 import logo from "../../assets/images/whitelogo.png";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/userSlice";
 
 const SideBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const loggedIn = useSelector((state) => state.use.loggedIn);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -38,14 +40,17 @@ const SideBar = () => {
               to=''
               className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
               <MdHome size={22} />
-              {!isCollapsed && <span>Home</span>} 
+              {!isCollapsed && <span>Home</span>}
             </Link>
-            <Link
-              to='mybooking'
-              className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
-              <TbBrandBooking size={22} />
-              {!isCollapsed && <span>My Bookings</span>}
-            </Link>
+            {loggedIn && (
+              <Link
+                to='mybooking'
+                className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
+                <TbBrandBooking size={22} />
+                {!isCollapsed && <span>My Bookings</span>}
+              </Link>
+            )}
+
             <Link
               to=''
               className='flex items-center gap-4 hover:bg-blue-700 p-2 rounded-full cursor-pointer'>
@@ -63,10 +68,24 @@ const SideBar = () => {
 
         {/* Bottom - Sign Up */}
 
-        {!loggedIn && (
+        {loggedIn ? (
           <div className='text-center mt-6'>
             {!isCollapsed && (
-              <Link to="register" className='bg-white text-red-600 border-2 border-red-600 hover:bg-gray-100 px-6 py-2 rounded-full text-sm font-semibold'>
+              <button
+                onClick={() => {
+                  dispatch(logout());
+                }}
+                className='bg-white text-red-600 border-2 border-red-600 hover:bg-gray-100 px-6 py-3 rounded-full text-sm font-semibold'>
+                Logout
+              </button>
+            )}
+          </div>
+        ) : (
+          <div className='text-center mt-6'>
+            {!isCollapsed && (
+              <Link
+                to='register'
+                className='bg-white text-red-600 border-2 border-red-600 hover:bg-gray-100 px-6 py-3 rounded-full text-sm font-semibold'>
                 Sign Up Now
               </Link>
             )}

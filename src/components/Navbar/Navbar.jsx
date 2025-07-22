@@ -116,14 +116,13 @@ function Navbar() {
             id='navbar-user'>
             <ul className='flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 '>
               <li className='hover:bg-blue-700 rounded-xl'>
-                <a
-                  href='#'
+                <Link to="searchpage"
                   className='flex flex-col items-center py-2 px-3 text-white  '
                   aria-current='page'>
                   {" "}
                   <BiSolidHotel className='text-2xl' />
                   <span className='font-mono'>HOTEL</span>
-                </a>
+                </Link>
               </li>
               <li className='hover:bg-blue-700 rounded-xl'>
                 <a

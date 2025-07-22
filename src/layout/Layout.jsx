@@ -11,8 +11,8 @@ function Layout() {
       <SideBar />
       <SearchBar />
       <div className='w-4/5 ms-auto pe-10 ps-5'>
-        <Suspense loading={<div> loading....</div> }>
-          <Outlet /> 
+        <Suspense loading={<div> loading....</div>}>
+          <Outlet />
         </Suspense>
       </div>
     </>
