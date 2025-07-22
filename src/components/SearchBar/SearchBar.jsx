@@ -1,4 +1,14 @@
 function SearchBar() {
+  const countries = [
+    { label: "United States", value: "US" },
+    { label: "Morocco", value: "MA" },
+    {
+      label: "Egypt",
+      value: "EG",
+    },
+    { label: "Greece", value: "GR" },
+  ];
+
   return (
     <>
       <div className='w-4/5 ms-auto pe-20 ps-5 relative bottom-4'>
@@ -23,9 +33,9 @@ function SearchBar() {
               COUNTRY
             </label>
             <select className='rounded-full px-4 py-2 bg-gray-100 text-gray-800 w-40'>
-              <option>Egypt</option>
-              <option>UAE</option>
-              <option>KSA</option>
+              {countries.map((country) => (
+                <option value={country.value}>{country.label}</option>
+              ))}
             </select>
           </div>
 

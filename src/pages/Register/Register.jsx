@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import blueLogo from "../../assets/images/bluelogo.png";
 import bgimage from "../../assets/images/BG.png";
 import { FcGoogle } from "react-icons/fc";
@@ -17,8 +17,11 @@ function Register() {
 
   const password = watch("password");
 
+  let navigate = useNavigate();
+  
   const onSubmit = (data) => {
     console.log("Register Data:", data);
+    navigate("/login");
   };
 
   return (
@@ -183,13 +186,9 @@ function Register() {
               type='tel'
               {...register("phone", {
                 required: "Phone number is required",
-                maxLength: {
-                  value: 12,
-                  message: "Phone number must be at most 12 digits",
-                },
                 pattern: {
-                  value: /^[0-9]+$/,
-                  message: "Phone number must contain only numbers",
+                  value: /^[0-9]{8,15}$/,
+                  message: "Invalid phone number format",
                 },
               })}
               id='phone'
@@ -250,12 +249,8 @@ function Register() {
       </div>
 
       {/* IMAGE SECTION */}
-      <div className='w-full md:w-1/2 hidden md:block'>
-        <img
-          src={bgimage}
-          alt='register background'
-          className='w-full h-full object-contain'
-        />
+      <div className='w-full h-9/10 md:w-1/2 hidden md:block'>
+        <img src={bgimage} alt='register background' className=' object-fit' />
       </div>
     </div>
   );

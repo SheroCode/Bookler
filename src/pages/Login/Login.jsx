@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgimage from "../../assets/images/BG.png";
 import blueLogo from "../../assets/images/bluelogo.png";
 import { FcGoogle } from "react-icons/fc";
@@ -11,13 +11,14 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "onBlur" }); // Show error on blur
-
+  const navigate = useNavigate();
   const onSubmit = (data) => {
     console.log("Login Data:", data);
+    navigate("/");
   };
 
   return (
-    <div className='flex flex-col md:flex-row min-h-screen'>
+    <div className='flex flex-col md:flex-row '>
       {/* FORM SECTION */}
       <div className='w-full md:w-1/2 flex flex-col justify-center items-center p-6 m-auto'>
         <form className='w-full max-w-md' onSubmit={handleSubmit(onSubmit)}>
@@ -49,8 +50,9 @@ function Login() {
                 },
               })}
             />
+            {/* error message */}
             {errors.email && (
-              <div className='p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50'>
+              <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
                 <span className='font-medium'>{errors.email.message}</span>
               </div>
             )}
@@ -73,7 +75,7 @@ function Login() {
               })}
             />
             {errors.password && (
-              <div className='p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50'>
+              <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
                 <span className='font-medium'>{errors.password.message}</span>
               </div>
             )}

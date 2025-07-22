@@ -41,7 +41,7 @@ function HomePage() {
 
       <div className='bg-white rounded-2xl p-7 mt-10  '>
         <h2 className='font-bold text-2xl mb-6'> Best Offer</h2>
-        <div className='flex flex-wrap gap-4'>
+        <div className='flex flex-wrap gap-4 justify-center'>
           {bestOffers.map((bestOffer) => (
             <BestOffer key={bestOffer.id} bestOffer={bestOffer} />
           ))}
