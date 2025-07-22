@@ -5,10 +5,12 @@ import { RiMenu3Line } from "react-icons/ri";
 import { TbBrandBooking } from "react-icons/tb";
 import logo from "../../assets/images/whitelogo.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SideBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const isLoggedin = false;
+  const loggedIn = useSelector((state) => state.use.loggedIn);
+
   return (
     <>
       {/* Sidebar */}
@@ -61,7 +63,7 @@ const SideBar = () => {
 
         {/* Bottom - Sign Up */}
 
-        {!isLoggedin && (
+        {!loggedIn && (
           <div className='text-center mt-6'>
             {!isCollapsed && (
               <Link to="register" className='bg-white text-red-600 border-2 border-red-600 hover:bg-gray-100 px-6 py-2 rounded-full text-sm font-semibold'>

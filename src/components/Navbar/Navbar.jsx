@@ -3,8 +3,12 @@ import { MdOutlineFlightTakeoff, MdVilla } from "react-icons/md";
 import { RiTaxiFill } from "react-icons/ri";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/userSlice";
 function Navbar() {
-  const isloggedin = true;
+  const loggedIn = useSelector((state) => state.use.loggedIn);
+  const dispatch = useDispatch();
+
   return (
     <>
       <nav className='bg-white border-gray-200 dark:bg-gray-900'>
@@ -13,7 +17,7 @@ function Navbar() {
           {/* </div> */}
 
           <div className='flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse'>
-            {isloggedin ? (
+            {loggedIn ? (
               <button
                 type='button'
                 className='flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 '
@@ -54,28 +58,30 @@ function Navbar() {
                 <li>
                   <a
                     href='#'
-                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'>
+                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 '>
                     Dashboard
                   </a>
                 </li>
                 <li>
                   <a
                     href='#'
-                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'>
+                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 '>
                     Settings
                   </a>
                 </li>
                 <li>
                   <a
                     href='#'
-                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'>
+                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 '>
                     Earnings
                   </a>
                 </li>
                 <li>
                   <a
-                    href='#'
-                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'>
+                    onClick={() => {
+                      dispatch(logout());
+                    }}
+                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 '>
                     Sign out
                   </a>
                 </li>
