@@ -4,6 +4,8 @@ import blueLogo from "../../assets/images/bluelogo.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../store/userSlice";
 
 function Login() {
   const {
@@ -12,9 +14,20 @@ function Login() {
     formState: { errors },
   } = useForm({ mode: "onBlur" }); // Show error on blur
   const navigate = useNavigate();
+  const storedUser = useSelector((state) => state.use.user);
+  const dispatch = useDispatch();
+
   const onSubmit = (data) => {
-    console.log("Login Data:", data);
-    navigate("/");
+    if (
+      storedUser &&
+      storedUser.email === data.email &&
+      storedUser.password === data.password
+    ) {
+      dispatch(login());
+      navigate("/");
+    } else {
+      alert("Invalid email or password");
+    }
   };
 
   return (

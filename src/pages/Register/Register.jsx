@@ -4,6 +4,8 @@ import bgimage from "../../assets/images/BG.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/userSlice";
 
 function Register() {
   const {
@@ -18,9 +20,10 @@ function Register() {
   const password = watch("password");
 
   let navigate = useNavigate();
-  
+  const dispatch =useDispatch()
   const onSubmit = (data) => {
     console.log("Register Data:", data);
+    dispatch(setUser(data))
     navigate("/login");
   };
 
