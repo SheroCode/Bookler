@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../Network/interceptor";
 import HotelCard from "../../components/HotelCard/HotelCard";
+import HeaderBar from "../../components/HeaderBar/HeaderBar";
 
 function SearchPage() {
   const [hotels, setHotels] = useState([]);
@@ -20,15 +21,19 @@ function SearchPage() {
   }, []);
 
   return (
-    <div className="px-4 py-6">
-      <h2 className="text-2xl font-bold text-center mb-6 ">Available Hotels</h2>
-
-      <div className="flex flex-wrap gap-1">
-        {hotels.map((hotel) => (
-          <HotelCard key={hotel.id} hotel={hotel} />
-        ))}
+    <>
+      <HeaderBar />
+      <div className='px-4 py-6'>
+        <h2 className='text-2xl font-bold text-center mb-6 '>
+          Available Hotels
+        </h2>
+        <div className='flex flex-wrap gap-1'>
+          {hotels.map((hotel) => (
+            <HotelCard key={hotel.id} hotel={hotel} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

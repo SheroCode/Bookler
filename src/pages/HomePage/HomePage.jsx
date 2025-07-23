@@ -7,14 +7,8 @@ const RecommendedCard = lazy(() =>
   import("../../components/RecommendedCard/RecommendedCard")
 );
 function HomePage() {
-  const [recommends, setRecommends] = useState([]);
   const [bestOffers, setBestOffer] = useState([]);
-  useEffect(() => {
-    axiosInstance.get(`/recommended_hotels`).then((res) => {
-      console.log(res.data);
-      return setRecommends(res.data);
-    });
-  }, []);
+
   useEffect(() => {
     axiosInstance.get(`/best_offer`).then((res) => {
       console.log(res.data);
@@ -33,9 +27,7 @@ function HomePage() {
           </div>
         }>
         <div className='flex flex-wrap gap-5 justify-center'>
-          {recommends.map((recommend) => (
-            <RecommendedCard key={recommend.id} recommend={recommend} />
-          ))}
+          <RecommendedCard />
         </div>
       </Suspense>
 
