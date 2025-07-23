@@ -2,14 +2,12 @@
 function HeaderBar() {
   return (
     <>
-      <div className='mt-6'>
+      <div className='mt-4 bg-white py-5 px-3 rounded-2xl w-9/10'>
         <div className='text-sm text-gray-500 mb-2'>
-          <span className='text-gray-600 font-medium'>Hotel Details</span> &gt;
+          <span className='text-gray-700 font-medium text-lg'>Hotel Details |</span> &gt;
           Hotel Details
         </div>
-        <h1 className='text-2xl font-bold text-gray-800 mb-4'>
-          San Francisco Marriott Marquis
-        </h1>
+       
       </div>
     </>
   );
