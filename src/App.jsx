@@ -1,21 +1,16 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import BookingFormCard from "./components/BookingFormCard/BookingFormCard";
-import HotelCard from "./components/HotelCard/HotelCard";
-import ProfileCard from "./components/ProfileCard/ProfileCard";
-import RecommendedCard from "./components/RecommendedCard/RecommendedCard";
-import SearchBar from "./components/SearchBar/SearchBar";
-import SideBar from "./components/SideBar/SideBar";
-import SummaryCard from "./components/SummaryCard/SummaryCard";
 import Layout from "./layout/Layout";
 import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
 import NotFound from "./pages/NotFound/NotFound";
-import BookingPage from "./pages/BookingPage/BookingPage";
-import { lazy } from "react";
+import Register from "./pages/Register/Register";
 import ProtectedRoute from "./routes/ProtectedRoute";
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const DetailsPage = lazy(() => import("./pages/DetailsPage/DetailsPage"));
 const SearchPage = lazy(() => import("./pages/SearchPage/SearchPage"));
+const MybookingPage = lazy(() => import("./pages/MybookingPage/MybookingPage"));
+const BookingPage = lazy(() => import("./pages/BookingPage/BookingPage"));
 function App() {
   const routes = createBrowserRouter([
     {
@@ -31,14 +26,24 @@ function App() {
           path: "mybooking",
           element: (
             <ProtectedRoute>
-              <BookingPage />
+              <MybookingPage />
             </ProtectedRoute>
           ),
         },
         {
+          path: "detailspage/:id",
+          element: <DetailsPage />,
+        },
+        {
           path: "searchpage",
+          element: <SearchPage />,
+        },
+        {
+          path: "bookingpage",
           element: (
-              <SearchPage />
+            // <ProtectedRoute>
+              <BookingPage />
+            // </ProtectedRoute>
           ),
         },
         {
@@ -53,15 +58,7 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={routes} />/{/* <Register /> */}
-      {/* <Login/> */}
-      {/* <SideBar/> */}
-      {/* <RecommendedCard/> */}
-      {/* <HotelCard/> */}
-      {/* <ProfileCard /> */}
-      {/* <SearchBar/> */}
-      {/* <BookingFormCard/>
-<SummaryCard/> */}
+      <RouterProvider router={routes} />
     </>
   );
 }

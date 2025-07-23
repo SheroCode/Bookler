@@ -1,16 +1,22 @@
 import { FcCheckmark } from "react-icons/fc";
 import { TiLocation } from "react-icons/ti";
+import CustomPaging from "./component/CustomPaging";
+import { Link } from "react-router-dom";
 
 function HotelDetailsCard({ hotelDetails }) {
   const {
     name,
-    images,
+    images = {},
     address,
     amenities,
     description,
     pricing = [],
     rating,
   } = hotelDetails;
+  const { gallery = [], main = "" } = images;
+
+  console.log(gallery);
+  console.log(main);
 
   return (
     <>
@@ -20,19 +26,12 @@ function HotelDetailsCard({ hotelDetails }) {
         <div className='grid lg:grid-cols-2 gap-6'>
           {/* Left: Image & Thumbnails */}
 
+          {/* <CustomPaging gallery={gallery} main={main} /> */}
           <div className='space-y-4'>
-            <img
-              src={images?.main}
-              alt='Hotel'
-              className='rounded-lg w-full h-auto'
-            />
+            <img src={main} alt='Hotel' className='rounded-lg w-full h-auto' />
             <div className='flex gap-2 justify-center'>
-              {images?.gallery?.map((i, idx) => (
-                <img
-                  key={i + idx}
-                  src={i}
-                  className='w-20 h-14 rounded-md border'
-                />
+              {gallery?.map((i, idx) => (
+                <img key={i + idx} src={i} className='w-20 h-14 rounded-md ' />
               ))}
             </div>
           </div>
@@ -92,19 +91,19 @@ function HotelDetailsCard({ hotelDetails }) {
             <div className='mt-4 text-sm text-gray-700'>
               <p className='font-medium mb-1'>Popular Service</p>
               <div className='flex flex-wrap gap-2 text-xs text-gray-600'>
-                {amenities?.map((amenity) => (
-                  <>
+                {amenities?.map((amenity, index) => (
+                  <div key={index} className='flex'>
                     <FcCheckmark size={14} />
                     <span>{amenity}</span>
-                  </>
+                  </div>
                 ))}
               </div>
             </div>
 
             {/* Button */}
-            <button className='mt-6 bg-blue-600 text-white font-semibold py-2 px-4 rounded-md w-40'>
+            <Link to="/bookingpage"  className='mt-6 bg-blue-600 text-white font-semibold py-2 px-4 rounded-md w-40'>
               PAY NOW
-            </button>
+            </Link>
           </div>
         </div>
       </div>
