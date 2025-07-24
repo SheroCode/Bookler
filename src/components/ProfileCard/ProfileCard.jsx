@@ -1,7 +1,7 @@
 function ProfileCard() {
   return (
     <>
-      <div className='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700'>
+      <div className='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm '>
         <div className='py-4 px-4  bg-gray-100 mb-6'>
           <p className='font-bold text-gray-800'>Profile</p>
         </div>

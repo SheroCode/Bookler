@@ -1,12 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { differenceInDays } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Popup from "../Popup/Popup";
+import { addBooking } from "../../store/bookingSlice";
+import PayNowButton from "../Buttons/PayNowButton";
 
-function BookingFormCard() {
+function BookingFormCard({ hotel }) {
   const { user } = useSelector((state) => state.use);
   const {
     register,
@@ -20,15 +22,32 @@ function BookingFormCard() {
   const pricePerNight = 500;
   const totalDays = fromDate && toDate ? differenceInDays(toDate, fromDate) : 0;
   const totalPrice = totalDays > 0 ? totalDays * pricePerNight : 0;
+  const dispatch = useDispatch();
 
   const onSubmit = () => {
     if (!fromDate || !toDate || totalDays <= 0) {
       alert("Please select a valid date range.");
       return;
     }
+
+    const bookingDetails = {
+      hotel: {
+        name: hotel.name,
+        image: hotel.image,
+        city: hotel.city,
+        rating: hotel.rating,
+        description: hotel.description,
+        price: hotel.price,
+      },
+      fromDate,
+      toDate,
+      totalDays,
+      totalPrice,
+    };
+
+    dispatch(addBooking(bookingDetails));
     setShowSuccess(true);
   };
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -208,12 +227,12 @@ function BookingFormCard() {
         <p className='text-lg mt-1'>Total Price: ${totalPrice}</p>
       </div>
 
-      <button
+      {/* <button
         type='submit'
         className='w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-semibold'>
         PAY NOW
-      </button>
-
+      </button> */}
+      <PayNowButton hotel={hotel} fromDate={fromDate} toDate={toDate} />
       {showSuccess && <Popup onClose={() => setShowSuccess(false)} />}
     </form>
   );

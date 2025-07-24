@@ -12,30 +12,26 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onBlur" }); // Show error on blur
+  } = useForm({ mode: "onBlur" }); // Validate on blur
+
   const navigate = useNavigate();
-  const storedUser = useSelector((state) => state.use.user);
+  const storedUser = useSelector((state) => state.use.user); // Redux stored user (from registration)
   const dispatch = useDispatch();
 
-const onSubmit = (data) => {
-  const user = storedUser || JSON.parse(localStorage.getItem("user"));
+  const onSubmit = (data) => {
+    const user = storedUser || JSON.parse(localStorage.getItem("user"));
 
-  if (
-    user &&
-    user.email === data.email &&
-    user.password === data.password
-  ) {
-    dispatch(login());
-    navigate("/");
-  } else {
-    alert("Invalid email or password");
-  }
-};
-
-
+    if (user && user.email === data.email && user.password === data.password) {
+      // Dispatch with user data
+      dispatch(login(user));
+      navigate("/");
+    } else {
+      alert("Invalid email or password");
+    }
+  };
   return (
     <div className='flex flex-col md:flex-row '>
-      {/* FORM SECTION */}
+      {/* Form Section */}
       <div className='w-full md:w-1/2 flex flex-col justify-center items-center p-6 m-auto'>
         <form className='w-full max-w-md' onSubmit={handleSubmit(onSubmit)}>
           {/* Logo */}
@@ -43,10 +39,10 @@ const onSubmit = (data) => {
             <img src={blueLogo} alt='logo' className='mx-auto w-32' />
           </div>
 
-          {/* Heading */}
+          {/* Title */}
           <h2 className='text-3xl font-bold text-center mb-6'>LOGIN</h2>
 
-          {/* Email */}
+          {/* Email Input */}
           <div className='mb-4'>
             <label
               htmlFor='email'
@@ -66,7 +62,7 @@ const onSubmit = (data) => {
                 },
               })}
             />
-            {/* error message */}
+            {/* Email Error Message */}
             {errors.email && (
               <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
                 <span className='font-medium'>{errors.email.message}</span>
@@ -74,7 +70,7 @@ const onSubmit = (data) => {
             )}
           </div>
 
-          {/* Password */}
+          {/* Password Input */}
           <div className='mb-6'>
             <label
               htmlFor='password'
@@ -90,6 +86,7 @@ const onSubmit = (data) => {
                 required: "Password is required",
               })}
             />
+            {/* Password Error Message */}
             {errors.password && (
               <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
                 <span className='font-medium'>{errors.password.message}</span>
@@ -97,7 +94,7 @@ const onSubmit = (data) => {
             )}
           </div>
 
-          {/* Login button */}
+          {/* Submit Button */}
           <button
             type='submit'
             className='w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2.5 rounded-lg transition-all mb-4'>
@@ -105,7 +102,7 @@ const onSubmit = (data) => {
           </button>
         </form>
 
-        {/* Register prompt */}
+        {/* Register Redirect */}
         <p className='text-sm text-center'>
           Don’t have an account?{" "}
           <Link to='/register' className='text-blue-700 font-semibold'>
@@ -113,7 +110,7 @@ const onSubmit = (data) => {
           </Link>
         </p>
 
-        {/* OR LOGIN WITH */}
+        {/* Divider & Social Logins */}
         <div className='w-full max-w-md mt-8'>
           <div className='flex items-center justify-center mb-6'>
             <hr className='flex-grow border-gray-300' />
@@ -123,7 +120,7 @@ const onSubmit = (data) => {
             <hr className='flex-grow border-gray-300' />
           </div>
 
-          {/* Google */}
+          {/* Google Login (Static UI only) */}
           <button className='w-full flex items-center justify-center gap-3 border border-gray-300 rounded-xl py-2.5 mb-4 hover:bg-gray-100 transition-all'>
             <FcGoogle size={24} />
             <span className='text-gray-700 font-medium'>
@@ -131,7 +128,7 @@ const onSubmit = (data) => {
             </span>
           </button>
 
-          {/* Facebook */}
+          {/* Facebook Login (Static UI only) */}
           <button className='w-full flex items-center justify-center gap-3 border border-gray-300 rounded-xl py-2.5 hover:bg-gray-100 transition-all'>
             <FaFacebookF size={22} className='text-blue-600' />
             <span className='text-gray-700 font-medium'>
@@ -141,7 +138,7 @@ const onSubmit = (data) => {
         </div>
       </div>
 
-      {/* IMAGE SECTION */}
+      {/* Image Section */}
       <div className='w-full md:w-1/2 hidden md:block'>
         <img
           src={bgimage}

@@ -1,6 +1,5 @@
 import { FcCheckmark } from "react-icons/fc";
 import { TiLocation } from "react-icons/ti";
-import CustomPaging from "./component/CustomPaging";
 import { Link } from "react-router-dom";
 
 function HotelDetailsCard({ hotelDetails }) {
@@ -67,7 +66,6 @@ function HotelDetailsCard({ hotelDetails }) {
                 </div>
               </div>
             </div>
-
             {/* About */}
             <div className='mt-4 '>
               <h2 className='text-lg font-bold'>About </h2>
@@ -76,7 +74,6 @@ function HotelDetailsCard({ hotelDetails }) {
                 Show More
               </button>
             </div>
-
             {/* Address */}
             <div className='mt-4 text-sm text-gray-700 flex items-start gap-2'>
               <TiLocation size={22} />
@@ -86,7 +83,6 @@ function HotelDetailsCard({ hotelDetails }) {
                 {address?.country}{" "}
               </span>
             </div>
-
             {/* Popular Services */}
             <div className='mt-4 text-sm text-gray-700'>
               <p className='font-medium mb-1'>Popular Service</p>
@@ -99,9 +95,11 @@ function HotelDetailsCard({ hotelDetails }) {
                 ))}
               </div>
             </div>
-
             {/* Button */}
-            <Link to="/bookingpage"  className='mt-6 bg-blue-600 text-white font-semibold py-2 px-4 rounded-md w-40'>
+            <Link
+              to='/bookingpage'
+              state={{ hotel: hotelDetails }}
+              className='mt-6 bg-blue-600 text-white font-semibold py-2 px-4 text-center rounded-md w-40'>
               PAY NOW
             </Link>
           </div>

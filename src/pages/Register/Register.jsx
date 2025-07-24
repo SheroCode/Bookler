@@ -20,10 +20,17 @@ function Register() {
   const password = watch("password");
 
   let navigate = useNavigate();
-  const dispatch =useDispatch()
+  const dispatch = useDispatch();
   const onSubmit = (data) => {
-    console.log("Register Data:", data);
-    dispatch(setUser(data))
+    const userData = { ...data };
+    delete userData.confirmPassword;
+
+    // Save to Redux
+    dispatch(setUser(userData));
+
+    // Save to localStorage
+    localStorage.setItem("user", JSON.stringify(userData));
+
     navigate("/login");
   };
 
