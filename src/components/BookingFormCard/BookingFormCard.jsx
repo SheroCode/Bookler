@@ -4,16 +4,15 @@ import { useState } from "react";
 import { differenceInDays } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Popup from "../Popup/Popup";
 
 function BookingFormCard() {
   const { user } = useSelector((state) => state.use);
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm();
-
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -22,7 +21,7 @@ function BookingFormCard() {
   const totalDays = fromDate && toDate ? differenceInDays(toDate, fromDate) : 0;
   const totalPrice = totalDays > 0 ? totalDays * pricePerNight : 0;
 
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     if (!fromDate || !toDate || totalDays <= 0) {
       alert("Please select a valid date range.");
       return;
@@ -57,11 +56,14 @@ function BookingFormCard() {
           <label className='text-sm font-semibold'>First Name</label>
           <input
             defaultValue={user?.firstName}
-            {...register("firstName", { required: true })}
+            {...register("firstName", { required: "First name is required" })}
             className='w-full bg-gray-100 px-4 py-2 rounded-md'
           />
+          {/* error message */}
           {errors.firstName && (
-            <p className='text-red-500 text-xs'>First name is required</p>
+            <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
+              <span className='font-medium'>{errors.firstName.message}</span>
+            </div>
           )}
         </div>
 
@@ -69,11 +71,14 @@ function BookingFormCard() {
           <label className='text-sm font-semibold'>Last Name</label>
           <input
             defaultValue={user?.lastName}
-            {...register("lastName", { required: true })}
+            {...register("lastName", { required: "Last name is required" })}
             className='w-full bg-gray-100 px-4 py-2 rounded-md'
           />
+          {/* error message */}
           {errors.lastName && (
-            <p className='text-red-500 text-xs'>Last name is required</p>
+            <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
+              <span className='font-medium'>{errors.lastName.message}</span>
+            </div>
           )}
         </div>
       </div>
@@ -83,23 +88,29 @@ function BookingFormCard() {
           <label className='text-sm font-semibold'>Email</label>
           <input
             defaultValue={user?.email}
-            {...register("email", { required: true })}
+            {...register("email", { required: "Email is required" })}
             className='w-full bg-gray-100 px-4 py-2 rounded-md'
           />
+          {/* error message */}
           {errors.email && (
-            <p className='text-red-500 text-xs'>Email is required</p>
+            <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
+              <span className='font-medium'>{errors.email.message}</span>
+            </div>
           )}
         </div>
 
         <div>
           <label className='text-sm font-semibold'>Mobile</label>
           <input
-            {...register("mobile", { required: true })}
+            {...register("mobile", { required: "Mobile is required" })}
             placeholder='+20 000 0000 000'
             className='w-full bg-gray-100 px-4 py-2 rounded-md'
           />
+          {/* error message */}
           {errors.mobile && (
-            <p className='text-red-500 text-xs'>Mobile is required</p>
+            <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
+              <span className='font-medium'>{errors.mobile.message}</span>
+            </div>
           )}
         </div>
       </div>
@@ -149,9 +160,11 @@ function BookingFormCard() {
             className='w-full bg-gray-100 px-4 py-2 rounded-md'
           />
           {errors.cardNumber && (
-            <p className='text-red-500 text-xs'>
-              Valid 16-digit card number required
-            </p>
+            <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
+              <span className='font-medium'>
+                Valid 16-digit card number required
+              </span>
+            </div>
           )}
         </div>
 
@@ -166,7 +179,9 @@ function BookingFormCard() {
             className='w-full bg-gray-100 px-4 py-2 rounded-md'
           />
           {errors.cvv && (
-            <p className='text-red-500 text-xs'>Valid 3-digit CVV required</p>
+            <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
+              <span className='font-medium'>Valid 3-digit CVV required</span>
+            </div>
           )}
         </div>
       </div>
@@ -174,12 +189,15 @@ function BookingFormCard() {
       <div className='mb-6'>
         <label className='text-sm font-semibold'>Card Holder</label>
         <input
-          {...register("cardHolder", { required: true })}
+          {...register("cardHolder", { required: "Card holder name required" })}
           placeholder='Ahmed Mohamed'
           className='w-full bg-gray-100 px-4 py-2 rounded-md'
         />
+        {/* error message */}
         {errors.cardHolder && (
-          <p className='text-red-500 text-xs'>Card holder name required</p>
+          <div className='p-2 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50'>
+            <span className='font-medium'>{errors.cardHolder.message}</span>
+          </div>
         )}
       </div>
 
@@ -196,11 +214,7 @@ function BookingFormCard() {
         PAY NOW
       </button>
 
-      {showSuccess && (
-        <div className='mt-4 bg-green-100 text-green-700 p-4 rounded'>
-          🎉 Booking successful!
-        </div>
-      )}
+      {showSuccess && <Popup onClose={() => setShowSuccess(false)} />}
     </form>
   );
 }
