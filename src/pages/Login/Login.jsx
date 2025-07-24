@@ -17,18 +17,21 @@ function Login() {
   const storedUser = useSelector((state) => state.use.user);
   const dispatch = useDispatch();
 
-  const onSubmit = (data) => {
-    if (
-      storedUser &&
-      storedUser.email === data.email &&
-      storedUser.password === data.password
-    ) {
-      dispatch(login());
-      navigate("/");
-    } else {
-      alert("Invalid email or password");
-    }
-  };
+const onSubmit = (data) => {
+  const user = storedUser || JSON.parse(localStorage.getItem("user"));
+
+  if (
+    user &&
+    user.email === data.email &&
+    user.password === data.password
+  ) {
+    dispatch(login());
+    navigate("/");
+  } else {
+    alert("Invalid email or password");
+  }
+};
+
 
   return (
     <div className='flex flex-col md:flex-row '>
