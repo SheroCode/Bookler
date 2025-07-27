@@ -1,11 +1,9 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { differenceInDays } from "date-fns";
 import { addBooking } from "../../store/bookingSlice";
 
 function PayNowButton({ hotel, fromDate, toDate, pricePerNight }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handlePayNow = () => {
     const totalDays = differenceInDays(toDate, fromDate);
@@ -18,9 +16,7 @@ function PayNowButton({ hotel, fromDate, toDate, pricePerNight }) {
       totalDays,
       totalPrice,
     };
-
     dispatch(addBooking(bookingData));
-    navigate("/mybooking");
   };
 
   return (
@@ -31,5 +27,4 @@ function PayNowButton({ hotel, fromDate, toDate, pricePerNight }) {
     </button>
   );
 }
-
 export default PayNowButton;

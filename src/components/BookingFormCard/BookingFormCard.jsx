@@ -1,27 +1,32 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { differenceInDays } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Popup from "../Popup/Popup";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from "../../store/bookingSlice";
 import PayNowButton from "../Buttons/PayNowButton";
+import Popup from "../Popup/Popup";
 
-function BookingFormCard({ hotel }) {
+function BookingFormCard({
+  hotel,
+  fromDate,
+  setFromDate,
+  toDate,
+  setToDate,
+  totalDays,
+  totalPrice,
+}) {
+  console.log({ hotel });
+    const pricePerNight = hotel?.pricing?.[0]?.discountedPrice || 0;
+
   const { user } = useSelector((state) => state.use);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [fromDate, setFromDate] = useState(null);
-  const [toDate, setToDate] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const pricePerNight = 500;
-  const totalDays = fromDate && toDate ? differenceInDays(toDate, fromDate) : 0;
-  const totalPrice = totalDays > 0 ? totalDays * pricePerNight : 0;
   const dispatch = useDispatch();
 
   const onSubmit = () => {
@@ -29,15 +34,15 @@ function BookingFormCard({ hotel }) {
       alert("Please select a valid date range.");
       return;
     }
-
     const bookingDetails = {
       hotel: {
         name: hotel.name,
-        image: hotel.image,
+        image: hotel.images.main,
         city: hotel.city,
         rating: hotel.rating,
         description: hotel.description,
-        price: hotel.price,
+        price: hotel.pricing[0].discountedPrice
+,
       },
       fromDate,
       toDate,
