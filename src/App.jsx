@@ -35,15 +35,15 @@ function App() {
           element: <DetailsPage />,
         },
         {
-          path: "searchpage",
+          path: "/search",
           element: <SearchPage />,
         },
         {
           path: "bookingpage",
           element: (
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <BookingPage />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           ),
         },
         {

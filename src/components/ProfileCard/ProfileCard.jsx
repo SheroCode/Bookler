@@ -1,4 +1,9 @@
+import { useSelector } from "react-redux";
+import userimage from "../../assets/images/user.png";
+
 function ProfileCard() {
+  const user = useSelector((store) => store.use.user);
+  console.log(user);
   return (
     <>
       <div className='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm '>
@@ -7,15 +12,15 @@ function ProfileCard() {
         </div>
         <div className='flex flex-col items-center pb-10'>
           <img
-            className='w-24 h-24 mb-3 rounded-full shadow-lg'
-            src='/docs/images/people/profile-picture-3.jpg'
+            className='w-24 h-24 mb-3 rounded-full shadow-lg object-cover'
+            src={userimage}
             alt='Bonnie image'
           />
           <h5 className='mb-1 text-xl font-medium text-gray-900 dark:text-white'>
-            Bonnie Green
+            {user.name}
           </h5>
           <span className='text-sm text-gray-500 dark:text-gray-400'>
-            Visual Designer
+            Personal Account{" "}
           </span>
           <div className='flex mt-4 md:mt-6'>
             <a

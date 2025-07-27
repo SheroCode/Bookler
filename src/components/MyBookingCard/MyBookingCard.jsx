@@ -1,6 +1,6 @@
 import React from "react";
 
-function MyBookingCad({ booking }) {
+function MyBookingCard({ booking }) {
   return (
     <>
       <div key={booking.hotel.id} className='bg-white rounded-xl shadow p-4'>
@@ -31,4 +31,4 @@ function MyBookingCad({ booking }) {
   );
 }
 
-export default MyBookingCad;
+export default MyBookingCard;
