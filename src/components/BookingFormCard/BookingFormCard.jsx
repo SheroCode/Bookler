@@ -2,8 +2,8 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { addBooking } from "../../store/bookingSlice";
+import { useSelector } from "react-redux";
+// import { addBooking } from "../../store/bookingSlice";
 import PayNowButton from "../Buttons/PayNowButton";
 import Popup from "../Popup/Popup";
 
@@ -27,30 +27,28 @@ function BookingFormCard({
   } = useForm();
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const dispatch = useDispatch();
 
   const onSubmit = () => {
     if (!fromDate || !toDate || totalDays <= 0) {
       alert("Please select a valid date range.");
       return;
     }
-    const bookingDetails = {
-      hotel: {
-        name: hotel.name,
-        image: hotel.images.main,
-        city: hotel.city,
-        rating: hotel.rating,
-        description: hotel.description,
-        price: hotel.pricing[0].discountedPrice
-,
-      },
-      fromDate,
-      toDate,
-      totalDays,
-      totalPrice,
-    };
+//     const bookingDetails = {
+//       hotel: {
+//         name: hotel.name,
+//         image: hotel.images.main,
+//         city: hotel.city,
+//         rating: hotel.rating,
+//         description: hotel.description,
+//         price: hotel.pricing[0].discountedPrice
+// ,
+//       },
+//       fromDate,
+//       toDate,
+//       totalDays,
+//       totalPrice,
+//     };
 
-    dispatch(addBooking(bookingDetails));
     setShowSuccess(true);
   };
   return (
