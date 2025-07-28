@@ -19,15 +19,11 @@ function HomePage() {
   return (
     <>
       <h2 className='text-2xl font-bold py-3 '>Recommended Hotels</h2>
-      <Suspense
-        fallback={
-          <Spinner/>
-        }>
+      <Suspense fallback={<Spinner />}>
         <div className='flex flex-wrap gap-5 justify-between'>
           <RecommendedCard />
         </div>
       </Suspense>
-
       <div className='bg-white rounded-2xl p-7 my-10  '>
         <h2 className='font-bold text-2xl mb-6'> Best Offer</h2>
         <div className='flex flex-wrap gap-4 justify-between'>

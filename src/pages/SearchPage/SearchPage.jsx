@@ -10,11 +10,11 @@ const HotelCard = lazy(() => import("../../components/HotelCard/HotelCard"));
 function SearchPage() {
   const [searchParams] = useSearchParams();
   const [hotels, setHotels] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchFilteredHotels = async () => {
-      setLoading(true); 
+      setLoading(true);
       const nameQuery = searchParams.get("q") || "";
       const countryCode = searchParams.get("country") || "";
       let url = "/hotels";
@@ -36,13 +36,12 @@ function SearchPage() {
 
     fetchFilteredHotels();
   }, [searchParams]);
-
   return (
     <>
       <HeaderBar title='Hotel | Total ' total={hotels.length} />
       <div className='min-h-[300px] flex justify-center items-center'>
         {loading ? (
-          <Spinner/>
+          <Spinner />
         ) : hotels.length !== 0 ? (
           <Suspense fallback={<Spinner />}>
             <div className='flex flex-wrap justify-between'>

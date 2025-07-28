@@ -7,7 +7,8 @@ import HeaderBar from "../../components/HeaderBar/HeaderBar";
 // Lazy loading
 const RecommendedCard = lazy(() =>
   import("../../components/RecommendedCard/RecommendedCard")
-);function DetailsPage() {
+);
+function DetailsPage() {
   let { id } = useParams();
   console.log(id);
   const [hotelDetails, setHotelDetails] = useState({});
@@ -25,24 +26,22 @@ const RecommendedCard = lazy(() =>
   }, [id]);
   return (
     <>
-
-
-    <HeaderBar title={"Hotel Details"}/>
+      <HeaderBar title={"Hotel Details"} />
       <HotelDetailsCard hotelDetails={hotelDetails} />
 
-         <h2 className='text-2xl font-bold py-3 '>Recommended Hotels</h2>
-            <Suspense
-              fallback={
-                <div className='flex  items-center'>
-                  {" "}
-                  <TbTruckLoading className='font-bold text-2xl' />
-                  <h3 className='font-bold text-2xl'> Loading ...</h3>
-                </div>
-              }>
-              <div className='flex flex-wrap gap-5 justify-center'>
-                <RecommendedCard />
-              </div>
-            </Suspense>
+      <h2 className='text-2xl font-bold py-3 '>Recommended Hotels</h2>
+      <Suspense
+        fallback={
+          <div className='flex  items-center'>
+            {" "}
+            <TbTruckLoading className='font-bold text-2xl' />
+            <h3 className='font-bold text-2xl'> Loading ...</h3>
+          </div>
+        }>
+        <div className='flex flex-wrap gap-5 justify-center'>
+          <RecommendedCard />
+        </div>
+      </Suspense>
     </>
   );
 }
