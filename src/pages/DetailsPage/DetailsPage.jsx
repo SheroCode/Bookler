@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { axiosInstance } from "../../Network/interceptor";
 import HotelDetailsCard from "../../components/HotelDetailsCard/HotelDetailsCard";
 import { TbTruckLoading } from "react-icons/tb";
+import HeaderBar from "../../components/HeaderBar/HeaderBar";
 // Lazy loading
 const RecommendedCard = lazy(() =>
   import("../../components/RecommendedCard/RecommendedCard")
@@ -24,6 +25,9 @@ const RecommendedCard = lazy(() =>
   }, [id]);
   return (
     <>
+
+
+    <HeaderBar title={"Hotel Details"}/>
       <HotelDetailsCard hotelDetails={hotelDetails} />
 
          <h2 className='text-2xl font-bold py-3 '>Recommended Hotels</h2>

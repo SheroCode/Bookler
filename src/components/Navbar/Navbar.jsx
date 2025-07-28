@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/userSlice";
 import { useState } from "react";
-
+import userimage from "../../assets/images/user.png"
 function Navbar() {
   const loggedIn = useSelector((state) => state.use.loggedIn);
   const user = useSelector((state) => state.use.user);
@@ -31,8 +31,8 @@ function Navbar() {
                 onClick={() => setShowDropdown(!showDropdown)}>
                 <span className='sr-only'>Open user menu</span>
                 <img
-                  className='w-8 h-8 rounded-full'
-                  src='https://placehold.co/400'
+                  className='w-9 h-9 rounded-full object-contain'
+                  src={userimage}
                   alt='user'
                 />
               </button>

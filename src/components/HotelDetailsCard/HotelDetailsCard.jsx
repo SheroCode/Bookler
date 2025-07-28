@@ -100,7 +100,7 @@ function HotelDetailsCard({ hotelDetails }) {
               to='/bookingpage'
               state={{ hotel: hotelDetails }}
               className='mt-6 bg-blue-600 text-white font-semibold py-2 px-4 text-center rounded-md w-40'>
-              PAY NOW
+              Book Now
             </Link>
           </div>
         </div>

@@ -13,15 +13,15 @@ function MyBookingPage() {
   return (
     <>
       <HeaderBar title='My Bookings' />
-      <div className='flex flex-wrap justify-between'>
-        <div className=' w-7/12'>
+      <div className='flex flex-wrap justify-between mb-5'>
+        <div className='lg:w-7/12 w-full mb-5'>
           {bookings.map((booking) => (
             <MyBookingCard key={booking.hotel.id} booking={booking} />
           ))}
         </div>
 
-        <div className='w-3/12'>
-          <ProfileCard  />
+        <div className='lg:w-4/12 w-1/2 mx-auto '>
+          <ProfileCard />
         </div>
       </div>
     </>

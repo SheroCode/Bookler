@@ -9,7 +9,7 @@ function HotelCard({ hotel, isBooked = false }) {
   const pricing = hotel?.pricing?.[0] ?? { discount: "No offer", discountedPrice: "N/A" };
 
   return (
-    <div className='bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden w-full max-w-3xl mx-auto flex flex-col md:flex-row'>
+    <div className='bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden  mx-auto flex flex-col md:flex-row w-xl mb-3'>
       {/* Hotel Image */}
       <img
         className='object-cover w-full h-60 md:h-auto md:w-40'
@@ -25,7 +25,7 @@ function HotelCard({ hotel, isBooked = false }) {
             <h2 className='text-xl font-bold text-gray-800 mb-1'>
               {hotel?.name || "Hotel Name"}
             </h2>
-            <span className='bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded'>
+            <span className='bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded min-w-12 text-center'>
               {score} ★
             </span>
           </div>

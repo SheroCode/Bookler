@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { axiosInstance } from "../../Network/interceptor";
 import { TbTruckLoading } from "react-icons/tb";
 import BestOffer from "../../components/BestOffer/BestOffer";
+import { Spinner } from "flowbite-react";
 // Lazy loading
 const RecommendedCard = lazy(() =>
   import("../../components/RecommendedCard/RecommendedCard")
@@ -20,20 +21,16 @@ function HomePage() {
       <h2 className='text-2xl font-bold py-3 '>Recommended Hotels</h2>
       <Suspense
         fallback={
-          <div className='flex  items-center'>
-            {" "}
-            <TbTruckLoading className='font-bold text-2xl' />
-            <h3 className='font-bold text-2xl'> Loading ...</h3>
-          </div>
+          <Spinner/>
         }>
-        <div className='flex flex-wrap gap-5 justify-center'>
+        <div className='flex flex-wrap gap-5 justify-between'>
           <RecommendedCard />
         </div>
       </Suspense>
 
-      <div className='bg-white rounded-2xl p-7 mt-10  '>
+      <div className='bg-white rounded-2xl p-7 my-10  '>
         <h2 className='font-bold text-2xl mb-6'> Best Offer</h2>
-        <div className='flex flex-wrap gap-4 justify-center'>
+        <div className='flex flex-wrap gap-4 justify-between'>
           {bestOffers.map((bestOffer) => (
             <BestOffer key={bestOffer.id} bestOffer={bestOffer} />
           ))}

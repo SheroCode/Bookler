@@ -26,8 +26,7 @@ function SearchBar() {
   };
 
   return (
-    <div className='w-4/5 ms-auto pe-20 ps-5 relative bottom-4'>
-      <div className='bg-white rounded-2xl shadow-md p-4 flex flex-wrap items-center justify-between gap-4'>
+      <div className='bg-white rounded-2xl shadow-md p-4 flex flex-wrap items-center justify-between gap-4 relative bottom-4'>
         {/* Search by name */}
         <div className='flex flex-col'>
           <label className='text-xs text-gray-400 font-semibold mb-1'>
@@ -38,17 +37,17 @@ function SearchBar() {
             placeholder='Search by name'
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className='rounded-full px-6 py-2 bg-gray-100 text-gray-800 w-40 font-semibold text-sm'
+            className='rounded-full px-6 py-2 bg-gray-100 text-gray-800 w-40 font-semibold text-sm border-0'
           />
         </div>
 
         {/* Country */}
         <div className='flex flex-col'>
-          <label className='text-xs text-gray-400 font-semibold mb-1'>
+          <label className='text-xs text-gray-400 font-semibold mb-1 '>
             COUNTRY
           </label>
           <select
-            className='rounded-full px-6 py-2 bg-gray-100 text-gray-800 w-40 font-semibold text-sm'
+            className='rounded-full px-6 py-2 bg-gray-100 text-gray-800 w-40 font-semibold text-sm border-0'
             value={selectedCountry}
             onChange={(e) => setSelectedCountry(e.target.value)}
           >
@@ -63,24 +62,24 @@ function SearchBar() {
 
         {/* Check-In */}
         <div className='flex flex-col'>
-          <label className='text-xs text-gray-400 font-semibold mb-1'>
+          <label className='text-xs text-gray-400 font-semibold mb-1 '>
             CHECK-IN
           </label>
           <input
             type='date'
-            className='rounded-full px-6 py-2 bg-gray-100 text-gray-800 w-40 font-semibold text-sm'
+            className='rounded-full px-6 py-2 bg-gray-100 text-gray-800 w-40 font-semibold text-sm border-0'
             defaultValue='2025-08-21'
           />
         </div>
 
         {/* Check-Out */}
         <div className='flex flex-col'>
-          <label className='text-xs text-gray-400 font-semibold mb-1'>
+          <label className='text-xs text-gray-400 font-semibold mb-1 border-0'>
             CHECK-OUT
           </label>
           <input
             type='date'
-            className='rounded-full px-6 py-2 bg-gray-100 text-gray-800 w-40 font-semibold text-sm'
+            className='rounded-full px-6 py-2 bg-gray-100 text-gray-800 w-40 font-semibold text-sm border-0'
             defaultValue='2025-08-24'
           />
         </div>
@@ -101,7 +100,6 @@ function SearchBar() {
           </button>
         </div>
       </div>
-    </div>
   );
 }
 

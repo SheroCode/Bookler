@@ -30,7 +30,7 @@ function Login() {
     }
   };
   return (
-    <div className='flex flex-col md:flex-row '>
+    <div className='flex flex-col md:flex-row  bg-white  w-3/4 mx-auto'>
       {/* Form Section */}
       <div className='w-full md:w-1/2 flex flex-col justify-center items-center p-6 m-auto'>
         <form className='w-full max-w-md' onSubmit={handleSubmit(onSubmit)}>
@@ -139,11 +139,11 @@ function Login() {
       </div>
 
       {/* Image Section */}
-      <div className='w-full md:w-1/2 hidden md:block'>
+      <div className='w-full h-screen md:w-1/2 hidden md:block'>
         <img
           src={bgimage}
           alt='login background'
-          className='w-full h-full object-contain'
+          className='w-full h-full object-cover'
         />
       </div>
     </div>

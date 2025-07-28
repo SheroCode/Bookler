@@ -1,14 +1,20 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { axiosInstance } from "../../Network/interceptor";
-import HotelCard from "../../components/HotelCard/HotelCard";
 import HeaderBar from "../../components/HeaderBar/HeaderBar";
 import { useSearchParams } from "react-router-dom";
 import NoResult from "../NoResult/NoResult";
+import { Spinner } from "flowbite-react";
+
+const HotelCard = lazy(() => import("../../components/HotelCard/HotelCard"));
+
 function SearchPage() {
   const [searchParams] = useSearchParams();
   const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(true); 
+
   useEffect(() => {
     const fetchFilteredHotels = async () => {
+      setLoading(true); 
       const nameQuery = searchParams.get("q") || "";
       const countryCode = searchParams.get("country") || "";
       let url = "/hotels";
@@ -23,27 +29,34 @@ function SearchPage() {
         setHotels(res.data);
       } catch (err) {
         console.error("Error fetching hotels:", err);
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchFilteredHotels();
   }, [searchParams]);
+
   return (
     <>
-      <HeaderBar title="Hotel | Total " total={ hotels.length  } />
-      <div className='px-4 py-6'>
-        {hotels.length === 0 ? (
-          <NoResult />
+      <HeaderBar title='Hotel | Total ' total={hotels.length} />
+      <div className='min-h-[300px] flex justify-center items-center'>
+        {loading ? (
+          <Spinner/>
+        ) : hotels.length !== 0 ? (
+          <Suspense fallback={<Spinner />}>
+            <div className='flex flex-wrap justify-between'>
+              {hotels.map((hotel) => (
+                <HotelCard key={hotel.id} hotel={hotel} />
+              ))}
+            </div>
+          </Suspense>
         ) : (
-          <div className='flex flex-wrap gap-1'>
-
-            <div></div>
-            {hotels.map((hotel) => (
-              <HotelCard key={hotel.id} hotel={hotel} />
-            ))}
-          </div>
+          <NoResult />
         )}
       </div>
     </>
   );
 }
+
 export default SearchPage;

@@ -19,7 +19,7 @@ const SideBar = () => {
       <aside
         className={`fixed top-10 left-5 h-4/5 bg-blue-600  z-40  
         ${
-          isCollapsed ? "w-16" : "w-58"
+          isCollapsed ? "w-17" : "w-58" 
         } rounded-3xl flex flex-col justify-between px-4 py-6`}>
         {/* Top Section */}
         <div>

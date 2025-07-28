@@ -35,17 +35,15 @@ function Register() {
   };
 
   return (
-    <div className='flex flex-col md:flex-row min-h-screen'>
+    <div className='flex flex-col md:flex-row w-3/4 mx-auto'>
       {/* FORM SECTION */}
-      <div className='w-full md:w-1/2 flex flex-col justify-center items-center p-6 m-auto'>
+      <div className='w-full md:w-1/2 flex flex-col justify-center items-center p-6 mx-auto bg-white'>
         <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-md'>
           {/* Logo */}
           <div className='text-center mb-4'>
             <img src={blueLogo} alt='logo' className='mx-auto w-32' />
           </div>
-
           <h2 className='text-3xl font-bold text-center mb-6'>SIGNUP</h2>
-
           {/* Name */}
           <div className='mb-4'>
             <label
@@ -259,9 +257,13 @@ function Register() {
       </div>
 
       {/* IMAGE SECTION */}
-      <div className='w-full h-9/10 md:w-1/2 hidden md:block'>
-        <img src={bgimage} alt='register background' className=' object-fit' />
-      </div>
+     <div className='w-full  lg:w-1/2 hidden md:block'>
+             <img
+               src={bgimage}
+               alt='register background'
+               className='w-full h-full object-cover'
+             />
+           </div>
     </div>
   );
 }
