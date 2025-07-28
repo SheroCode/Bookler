@@ -20,7 +20,7 @@ function BookingPage() {
 
   return (
     <>
-      <HeaderBar />
+      <HeaderBar title={"Booking"} />
       <div className='flex flex-wrap my-5 px-4 gap-6'>
         <div className='w-full lg:w-8/12'>
           <BookingFormCard

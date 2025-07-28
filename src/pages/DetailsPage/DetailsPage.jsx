@@ -1,9 +1,9 @@
+import { Spinner } from "flowbite-react";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "../../Network/interceptor";
-import HotelDetailsCard from "../../components/HotelDetailsCard/HotelDetailsCard";
-import { TbTruckLoading } from "react-icons/tb";
 import HeaderBar from "../../components/HeaderBar/HeaderBar";
+import HotelDetailsCard from "../../components/HotelDetailsCard/HotelDetailsCard";
 // Lazy loading
 const RecommendedCard = lazy(() =>
   import("../../components/RecommendedCard/RecommendedCard")
@@ -27,16 +27,13 @@ function DetailsPage() {
   return (
     <>
       <HeaderBar title={"Hotel Details"} />
+      
       <HotelDetailsCard hotelDetails={hotelDetails} />
 
-      <h2 className='text-2xl font-bold py-3 '>Recommended Hotels</h2>
+      <h2 className='text-2xl font-bold py-3 mt-15'>Recommended Hotels</h2>
       <Suspense
         fallback={
-          <div className='flex  items-center'>
-            {" "}
-            <TbTruckLoading className='font-bold text-2xl' />
-            <h3 className='font-bold text-2xl'> Loading ...</h3>
-          </div>
+          <Spinner/>
         }>
         <div className='flex flex-wrap gap-5 justify-center'>
           <RecommendedCard />

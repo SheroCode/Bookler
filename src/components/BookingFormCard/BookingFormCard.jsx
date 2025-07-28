@@ -62,10 +62,10 @@ function BookingFormCard({
 
       <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mb-4'>
         <div>
-          <label className='text-sm font-semibold'>Title</label>
+          <label className='text-sm font-semibold '>Title</label>
           <select
             {...register("title", { required: true })}
-            className='w-full bg-gray-100 px-4 py-2 rounded-md'>
+            className='w-full bg-gray-100 px-4 py-2 rounded-md border-gray-300'>
             <option value='Mr'>Mr</option>
             <option value='Mrs'>Mrs</option>
           </select>
@@ -140,19 +140,19 @@ function BookingFormCard({
       {/* Dates */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-4'>
         <div>
-          <label className='text-sm font-semibold'>From Date</label>
+          <label className='text-sm font-semibold mx-3'>From Date</label>
           <DatePicker
             selected={fromDate}
             onChange={(date) => setFromDate(date)}
             selectsStart
             startDate={fromDate}
             endDate={toDate}
-            className='w-full bg-gray-100 px-4 py-2 rounded-md'
+            className='w-full bg-gray-100 px-4 py-2 rounded-md border-gray-300'
             placeholderText='Select start date'
           />
         </div>
         <div>
-          <label className='text-sm font-semibold'>To Date</label>
+          <label className='text-sm font-semibold me-3'>To Date</label>
           <DatePicker
             selected={toDate}
             onChange={(date) => setToDate(date)}
@@ -160,7 +160,7 @@ function BookingFormCard({
             startDate={fromDate}
             endDate={toDate}
             minDate={fromDate}
-            className='w-full bg-gray-100 px-4 py-2 rounded-md'
+            className='w-full bg-gray-100 px-4 py-2 rounded-md border-gray-300'
             placeholderText='Select end date'
           />
         </div>
@@ -225,16 +225,10 @@ function BookingFormCard({
 
       {/* Summary */}
       <div className='mb-6 text-sm font-medium text-gray-800'>
-        <p>Price per night: ${pricePerNight}</p>
-        <p>Total days: {totalDays}</p>
-        <p className='text-lg mt-1'>Total Price: ${totalPrice}</p>
+        <p className="mb-2">Price per night: ${pricePerNight}</p>
+        <p className="mb-2">Total days: {totalDays}</p>
+        <p className='text-lg mt-1 text-grey-600'>Total Price: ${totalPrice}</p>
       </div>
-
-      {/* <button
-        type='submit'
-        className='w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-semibold'>
-        PAY NOW
-      </button> */}
       <PayNowButton hotel={hotel} fromDate={fromDate} toDate={toDate} />
       {showSuccess && <Popup onClose={() => setShowSuccess(false)} />}
     </form>

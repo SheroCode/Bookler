@@ -29,18 +29,18 @@ function SummaryCard({ hotel, fromDate, toDate, totalDays, totalPrice }) {
         </span>
         <span className='text-2xl font-bold'>
           {pricePerNight}
-          <span className='text-sm font-medium text-gray-500'>
+          <span className='text-sm font-medium text-gray-500 ms-2'>
             {hotel.pricing[0].currency}
           </span>
         </span>
       </div>
 
       <div className='text-sm text-gray-600 mb-2'>
-        <p>
-          <strong>Check In:</strong> {formatDate(fromDate)}
+        <p className="mb-2">
+          <strong>Check In :</strong> {formatDate(fromDate)}
         </p>
         <p>
-          <strong>Check Out:</strong> {formatDate(toDate)}
+          <strong>Check Out :</strong> {formatDate(toDate)}
         </p>
       </div>
 
@@ -48,16 +48,16 @@ function SummaryCard({ hotel, fromDate, toDate, totalDays, totalPrice }) {
 
       <div className='text-sm text-gray-700 space-y-1'>
         <div className='flex justify-between'>
-          <span>Price Per Night</span>
+          <span>Price Per Night </span>
           <span>${pricePerNight}</span>
         </div>
-        <div className='flex justify-between'>
+        <div className='flex justify-between mb-4'>
           <span>Nights</span>
           <span>{totalDays || 0}</span>
         </div>
         <div className='flex justify-between font-bold text-black pt-2 border-t'>
           <span>Total Price</span>
-          <span>${totalPrice || 0}</span>
+          <span className="text-amber-300">${totalPrice || 0}</span>
         </div>
       </div>
     </div>
