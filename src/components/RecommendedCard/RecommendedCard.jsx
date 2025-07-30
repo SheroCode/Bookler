@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../../Network/interceptor";
 import Slider from "react-slick";
-import "./Recommended.css"
+import "./Recommended.css";
 function RecommendedCard() {
   const [recommends, setRecommends] = useState([]);
 
@@ -14,9 +14,9 @@ function RecommendedCard() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 300,
+    speed: 1000,
     slidesToShow: 2,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     responsive: [
       {
         breakpoint: 1024,
@@ -35,13 +35,12 @@ function RecommendedCard() {
 
   return (
     <>
-      <div className="w-full px-4 py-10">
+      <div className='w-full px-4 py-10 '>
         <Slider {...settings}>
           {recommends.map((recommend) => (
             <div
               key={recommend.id}
-              className='recommended lg:flex-row   flex-col  items-center bg-white border border-gray-200 rounded-lg shadow-sm  lg:w-lg w-full hover:bg-gray-100 p-3 '
-             >
+              className='recommended lg:flex-row   flex-col  items-center bg-white border border-gray-200 rounded-lg shadow-sm  lg:w-lg w-full hover:bg-gray-100 p-3 '>
               <img
                 className=' lg:w-4/12 h-full rounded-2xl shadow-xl  w-full mb-3 lg:mb-0 max-w-150'
                 src={recommend.images.main}
