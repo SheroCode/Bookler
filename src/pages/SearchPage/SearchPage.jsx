@@ -26,6 +26,7 @@ function SearchPage() {
       }
       try {
         const res = await axiosInstance.get(url);
+        console.log("res", res)
         setHotels(res.data);
       } catch (err) {
         console.error("Error fetching hotels:", err);
@@ -44,7 +45,7 @@ function SearchPage() {
           <Spinner />
         ) : hotels.length !== 0 ? (
           <Suspense fallback={<Spinner />}>
-            <div className='flex flex-wrap justify-between'>
+            <div className='flex flex-wrap justify-between gap-4'>
               {hotels.map((hotel) => (
                 <HotelCard key={hotel.id} hotel={hotel} />
               ))}
