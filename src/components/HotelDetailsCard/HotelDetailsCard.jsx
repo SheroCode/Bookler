@@ -24,10 +24,14 @@ function HotelDetailsCard({ hotelDetails }) {
 
         <div className='grid lg:grid-cols-2 gap-6'>
           {/* Left: Image & Thumbnails */}
-
-          {/* <CustomPaging gallery={gallery} main={main} /> */}
           <div className='space-y-4'>
-            <img src={main} alt='Hotel' className='rounded-lg w-full h-auto' />
+            <div className='w-full'>
+              <img
+                src={main}
+                alt='Hotel'
+                className='rounded-lg w-full h-auto '
+              />
+            </div>
             <div className='flex gap-2 justify-center'>
               {gallery?.map((i, idx) => (
                 <img key={i + idx} src={i} className='w-20 h-14 rounded-md ' />

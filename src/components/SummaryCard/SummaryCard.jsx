@@ -1,4 +1,5 @@
 import React from "react";
+import { IoLocationSharp } from "react-icons/io5";
 
 function SummaryCard({ hotel, fromDate, toDate, totalDays, totalPrice }) {
   const formatDate = (date) =>
@@ -10,15 +11,12 @@ function SummaryCard({ hotel, fromDate, toDate, totalDays, totalPrice }) {
     <div className='bg-white rounded-xl shadow p-4 w-full max-w-sm'>
       <h2 className='text-xl font-bold mb-4'>Summary</h2>
 
-      <img
-        src={hotel.images.main}
-        alt='Hotel'
-        className='rounded-md mb-4'
-      />
+      <img src={hotel.images.main} alt='Hotel' className='rounded-md mb-4' />
 
       <div className='mb-2'>
         <p className='font-semibold'>{hotel.name}</p>
-        <p className='text-sm text-gray-500'>
+        <p className='text-sm text-gray-500 flex'>
+          <IoLocationSharp size={22} />
           {hotel.address.street}, {hotel.address.city}, {hotel.address.country}
         </p>
       </div>
@@ -36,7 +34,7 @@ function SummaryCard({ hotel, fromDate, toDate, totalDays, totalPrice }) {
       </div>
 
       <div className='text-sm text-gray-600 mb-2'>
-        <p className="mb-2">
+        <p className='mb-2'>
           <strong>Check In :</strong> {formatDate(fromDate)}
         </p>
         <p>
@@ -57,7 +55,7 @@ function SummaryCard({ hotel, fromDate, toDate, totalDays, totalPrice }) {
         </div>
         <div className='flex justify-between font-bold text-black pt-2 border-t'>
           <span>Total Price</span>
-          <span className="text-amber-300">${totalPrice || 0}</span>
+          <span className='text-amber-300'>${totalPrice || 0}</span>
         </div>
       </div>
     </div>

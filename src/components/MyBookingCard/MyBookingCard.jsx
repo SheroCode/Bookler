@@ -1,6 +1,6 @@
 function MyBookingCard({ booking }) {
   return (
-    <div className='bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row'>
+    <div className='bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row mb-5'>
       {/* Left: Hotel Image */}
       <div className='md:w-1/3 w-full'>
         <img
